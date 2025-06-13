@@ -44,8 +44,9 @@ Install both using the Arduino Library Manager.
 This output can be visualized using Python, Excel, or Processing.
 
 ## 🧑‍💻 Author
-Created by **Herobrine Sah**  
-GitHub: [Herobrine Pixel](https://github.com/Herobrine-Pixel)
+Created by **Herobrine Pixel** 
+           **2025**
+
 
 ## 🪪 License
 MIT License
