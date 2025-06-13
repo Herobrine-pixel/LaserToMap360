@@ -70,3 +70,20 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+# LaserToMap360 PlatformIO Template
+
+This is a ready-to-use PlatformIO project that scans 360° using a VL53L0X laser sensor and a stepper motor.
+
+## 🧪 Run it
+
+```bash
+pio run --target upload
+pio device monitor
+```
+
+Make sure your wiring matches the README in the original [LaserToMap360 repo](https://github.com/Herobrine-Pixel/LaserToMap360).
+
+## 🔗 Dependencies
+- VL53L0X by Pololu
+- AccelStepper by Mike McCauley
