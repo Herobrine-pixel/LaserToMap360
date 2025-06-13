@@ -1,0 +1,37 @@
+{
+  "name": "LaserToMap360",
+  "version": "1.0.0",
+  "description": "360° laser mapping using VL53L0X and a 28BYJ-48 stepper motor with AccelStepper.",
+  "keywords": [
+    "laser",
+    "mapping",
+    "VL53L0X",
+    "stepper",
+    "tof",
+    "sensor",
+    "scan360"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Herobrine-Pixel/LaserToMap360.git"
+  },
+  "authors": [
+    {
+      "name": "Herobrine Pixel",
+      "email": "ashasah77@gmail.com",
+      "maintainer": true
+    }
+  ],
+  "frameworks": "arduino",
+  "platforms": "*",
+  "dependencies": [
+    {
+      "name": "pololu/VL53L0X",
+      "version": "^1.0.2"
+    },
+    {
+      "name": "mikem/AccelStepper",
+      "version": "^1.61"
+    }
+  ]
+}
