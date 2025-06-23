@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>LaserToMap360 Radar Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+    canvas { max-width: 100%; height: auto; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h2>LaserToMap360 Live Radar Plot</h2>
+  <button onclick="connectSerial()">Connect to Arduino</button>
+  <canvas id="radarChart" width="400" height="400"></canvas>
+
+  <script>
+    let port;
+    let chart;
+    let distanceMap = {};
+
+    const ctx = document.getElementById('radarChart').getContext('2d');
+    chart = new Chart(ctx, {
+      type: 'polarArea',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Distance (mm)',
+          data: [],
+          backgroundColor: 'rgba(54, 162, 235, 0.6)'
+        }]
+      },
+      options: {
+        scales: {
+          r: { beginAtZero: true }
+        }
+      }
+    });
+
+    async function connectSerial() {
+      try {
+        port = await navigator.serial.requestPort();
+        await port.open({ baudRate: 115200 });
+        const decoder = new TextDecoderStream();
+        const inputDone = port.readable.pipeTo(decoder.writable);
+        const reader = decoder.readable.getReader();
+
+        let buffer = '';
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+
+          buffer += value;
+          let lines = buffer.split('\n');
+          buffer = lines.pop();
+
+          for (let line of lines) {
+            try {
+              const data = JSON.parse(line.trim());
+              distanceMap[data.angle] = data.distance;
+              updateChart();
+            } catch (e) {
+              console.warn('Skipping invalid line:', line);
+            }
+          }
+        }
+      } catch (err) {
+        alert("Web Serial not supported or user denied permission.");
+        console.error(err);
+      }
+    }
+
+    function updateChart() {
+      const sortedAngles = Object.keys(distanceMap).sort((a, b) => a - b);
+      const distances = sortedAngles.map(a => distanceMap[a]);
+
+      chart.data.labels = sortedAngles;
+      chart.data.datasets[0].data = distances;
+      chart.update();
+    }
+  </script>
+</body>
+</html>
