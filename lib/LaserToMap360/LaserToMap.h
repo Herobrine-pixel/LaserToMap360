@@ -1,7 +1,8 @@
-#ifndef LaserToMap_h
-#define LaserToMap_h
+#ifndef LASERTOMAP_H
+#define LASERTOMAP_H
 
 #include <Arduino.h>
+#include <Wire.h>
 #include <VL53L0X.h>
 #include <AccelStepper.h>
 
@@ -12,11 +13,12 @@ public:
   void scan360();
   void printMap();
 
+  static const int totalSteps = 2048; // 28BYJ-48 one full rotation
+
 private:
   VL53L0X sensor;
   AccelStepper stepper;
-  static const int totalSteps = 4096; // Full rotation
-  uint16_t distances[360];
+  int distances[360]; // store distance for each degree
 };
 
 #endif
