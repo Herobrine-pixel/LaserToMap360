@@ -1,6 +1,6 @@
 {
   "name": "LaserToMap360",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "360° laser mapping using VL53L0X and a 28BYJ-48 stepper motor with AccelStepper.",
   "keywords": [
     "laser",
