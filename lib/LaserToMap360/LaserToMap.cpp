@@ -18,18 +18,20 @@ void LaserToMap::scan360() {
 
   for (int angle = 0; angle < 360; angle++) {
     stepper.runToNewPosition(angle * stepsPerDegree);
-    delay(20);
+    delay(20); // allow stepper to settle
     distances[angle] = sensor.readRangeContinuousMillimeters();
   }
 
-  // Return to 0 position
+  // Return to starting position
   stepper.runToNewPosition(0);
 }
 
 void LaserToMap::printMap() {
   for (int angle = 0; angle < 360; angle++) {
+    Serial.print("Angle: ");
     Serial.print(angle);
-    Serial.print(",");
-    Serial.println(distances[angle]);
+    Serial.print("°, Distance: ");
+    Serial.print(distances[angle]);
+    Serial.println(" mm");
   }
 }
