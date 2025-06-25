@@ -8,21 +8,33 @@ void LaserToMap::begin() {
   sensor.init();
   sensor.setTimeout(500);
   sensor.startContinuous();
+
   stepper.setMaxSpeed(1000);
   stepper.setAcceleration(500);
   stepper.setSpeed(500);
+
+  stepper.setCurrentPosition(0);
 }
 
 void LaserToMap::scan360() {
-  int stepsPerDegree = LaserToMap::totalSteps / 360;
+  int stepsPerDegree = totalSteps / 360;
 
   for (int angle = 0; angle < 360; angle++) {
     stepper.runToNewPosition(angle * stepsPerDegree);
-    delay(20); // allow stepper to settle
-    distances[angle] = sensor.readRangeContinuousMillimeters();
+    delay(20); // settle
+
+    int distance = sensor.readRangeContinuousMillimeters();
+    distances[angle] = distance;
+
+    // Send JSON for web app
+    Serial.print("{\"angle\":");
+    Serial.print(angle);
+    Serial.print(",\"distance\":");
+    Serial.print(distance);
+    Serial.println("}");
   }
 
-  // Return to starting position
+  // Return to start
   stepper.runToNewPosition(0);
 }
 
