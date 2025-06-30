@@ -74,7 +74,7 @@ SOFTWARE.
 # LaserToMap360 Web Viewer
 
 Live 360° Lidar scan viewer using Web Serial API and Chart.js.
-Just open the folder name Web
+## Just open the folder name WebApp and you will find all the important resources.
 
 ## How to Use
 
