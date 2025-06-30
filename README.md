@@ -2,7 +2,7 @@
 
 **LaserToMap360** is an Arduino library that uses a VL53L0X laser distance sensor and a stepper motor to perform a full 360° scan of the surroundings, outputting angle-distance data that can be used for basic spatial mapping or plotting.
 
-# For example Images of this project you can refer to the folder named Images.
+# For example Images of this project you can refer to the folder named - Wiring Images.
 ## 📦 Features
 - Full 360° scanning
 - Uses real hardware (VL53L0X + 28BYJ-48 stepper motor)
