@@ -71,6 +71,33 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+# LaserToMap360 Web Viewer
+
+Live 360° Lidar scan viewer using Web Serial API and Chart.js.
+Just open the folder name Web
+
+## How to Use
+
+1. Open `index.html` in **Google Chrome**
+2. Click **"Connect to Arduino"**
+3. Select the Arduino's USB serial port
+4. Watch the 360° scan live
+
+## Requirements
+
+- Arduino sending JSON like: `{"angle": 90, "distance": 1234}`
+- Baud rate: `115200`
+- Google Chrome (desktop or Android)
+- USB-OTG if on phone
+
+## Hosting
+
+Use GitHub Pages for live link:
+
+- Settings → Pages → Branch: `main`, Folder: `/root`
+- URL will be: `https://<your-username>.github.io/LaserToMap360/`
+- 
+
 # LaserToMap360 PlatformIO Template
 
 This is a ready-to-use PlatformIO project that scans 360° using a VL53L0X laser sensor and a stepper motor.
